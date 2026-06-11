@@ -199,5 +199,80 @@ class SeoManagement extends Page implements HasTable
             ->defaultSort('seo_score', 'asc')
             ->striped()
             ->paginated([10, 25, 50, 100]);
-    }
-}
+     }
+ 
+     /**
+      * Get the average SEO score across all tracked content.
+      */
+     public function getAverageScore(): int
+     {
+         $avg = SeoMeta::query()->avg('seo_score');
+ 
+         return (int) round($avg ?? 0);
+     }
+ 
+     /**
+      * Get count of records missing SEO titles.
+      */
+     public function getMissingTitlesCount(): int
+     {
+         return SeoMeta::query()
+             ->where(fn ($query) => $query->whereNull('title')->orWhere('title', ''))
+             ->count();
+     }
+ 
+     /**
+      * Get count of records missing meta descriptions.
+      */
+     public function getMissingDescriptionsCount(): int
+     {
+         return SeoMeta::query()
+             ->where(fn ($query) => $query->whereNull('description')->orWhere('description', ''))
+             ->count();
+     }
+ 
+     /**
+      * Get the percentage of content with good+ scores (>60).
+      */
+     public function getHealthyPercentage(): int
+     {
+         $total = SeoMeta::query()->count();
+ 
+         if ($total === 0) {
+             return 0;
+         }
+ 
+         $healthy = SeoMeta::query()
+             ->where('seo_score', '>', 60)
+             ->count();
+ 
+         return (int) round(($healthy / $total) * 100);
+     }
+ 
+     /**
+      * Get the lowest-scoring content items.
+      *
+      * @return Collection<int, SeoMeta>
+      */
+     public function getLowestScoring(int $limit = 5): Collection
+     {
+         return SeoMeta::query()
+             ->where('seo_score', '>', 0)
+             ->orderBy('seo_score', 'asc')
+             ->limit($limit)
+             ->get();
+     }
+ 
+     /**
+      * Get the color for a score.
+      */
+     public function getColorForScore(int $score): string
+     {
+         return match (true) {
+             $score <= 30 => 'danger',
+             $score <= 60 => 'warning',
+             $score <= 80 => 'info',
+             default => 'success',
+         };
+     }
+ }
