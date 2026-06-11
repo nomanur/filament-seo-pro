@@ -33,7 +33,7 @@ use Nomanur\FilamentSeoPro\Enums\SeoGrade;
 class ReadabilityAnalyzer
 {
     /** @var float Maximum points each of the 4 metrics can contribute. */
-    private const float METRIC_MAX_POINTS = 25.0;
+    private const METRIC_MAX_POINTS = 25.0;
 
     /**
      * Analyse the readability of the given HTML content.
