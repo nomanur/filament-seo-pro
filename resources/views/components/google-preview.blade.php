@@ -13,20 +13,39 @@
         description: @js($recordDescription),
         slug: @js($recordSlug),
         siteUrl: @js($siteUrl),
+        locale: @js(app()->getLocale()),
+
+        getString(value) {
+            if (typeof value === 'string') return value;
+            if (value && typeof value === 'object') {
+                if (Array.isArray(value)) {
+                    return value.length > 0 ? this.getString(value[0]) : '';
+                }
+                if (value[this.locale] !== undefined && value[this.locale] !== null) {
+                    return this.getString(value[this.locale]);
+                }
+                let values = Object.values(value);
+                return values.length > 0 ? this.getString(values[0]) : '';
+            }
+            return '';
+        },
 
         get truncatedTitle() {
-            if (!this.title) return '{{ __("filament-seo-pro::seo.preview.untitled") }}';
-            return this.title.length > 60 ? this.title.substring(0, 60) + '...' : this.title;
+            let t = this.getString(this.title);
+            if (!t) return '{{ __("filament-seo-pro::seo.preview.untitled") }}';
+            return t.length > 60 ? t.substring(0, 60) + '...' : t;
         },
 
         get truncatedDescription() {
-            if (!this.description) return '{{ __("filament-seo-pro::seo.preview.no_description") }}';
-            return this.description.length > 160 ? this.description.substring(0, 160) + '...' : this.description;
+            let d = this.getString(this.description);
+            if (!d) return '{{ __("filament-seo-pro::seo.preview.no_description") }}';
+            return d.length > 160 ? d.substring(0, 160) + '...' : d;
         },
 
         get formattedUrl() {
+            let s = this.getString(this.slug);
             let base = this.siteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '');
-            let path = this.slug ? ' › ' + this.slug.replace(/\//g, ' › ') : '';
+            let path = s ? ' › ' + s.replace(/\//g, ' › ') : '';
             return base + path;
         }
     }"

@@ -38,11 +38,11 @@ class SeoScoreIndicator extends Component
         $calculator = app(SeoScoreCalculator::class);
 
         $data = [
-            'title' => $get('seo.title') ?? $get('title') ?? '',
-            'description' => $get('seo.description') ?? '',
-            'focus_keyword' => $get('seo.focus_keyword') ?? '',
-            'content' => $get('content') ?? '',
-            'slug' => $get('slug') ?? '',
+            'title' => $this->normalizeState($get('seo.title') ?? $get('title') ?? ''),
+            'description' => $this->normalizeState($get('seo.description') ?? ''),
+            'focus_keyword' => $this->normalizeState($get('seo.focus_keyword') ?? ''),
+            'content' => $this->normalizeState($get('content') ?? ''),
+            'slug' => $this->normalizeState($get('slug') ?? ''),
             'url' => '',
         ];
 
@@ -59,5 +59,34 @@ class SeoScoreIndicator extends Component
                 default => 'success',
             },
         ];
+    }
+
+    /**
+     * Normalize a state value (e.g. string, translatable array, or object) to string.
+     */
+    protected function normalizeState(mixed $value): string
+    {
+        if (is_string($value)) {
+            return $value;
+        }
+
+        if (is_array($value)) {
+            if (empty($value)) {
+                return '';
+            }
+
+            $locale = app()->getLocale();
+            if (isset($value[$locale])) {
+                return $this->normalizeState($value[$locale]);
+            }
+
+            return $this->normalizeState(reset($value));
+        }
+
+        if (is_object($value) && method_exists($value, '__toString')) {
+            return (string) $value;
+        }
+
+        return '';
     }
 }

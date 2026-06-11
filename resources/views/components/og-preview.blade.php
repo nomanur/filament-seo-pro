@@ -13,19 +13,37 @@
         description: @js($ogDescription),
         image: @js($ogImage),
         domain: @js($domain),
+        locale: @js(app()->getLocale()),
+
+        getString(value) {
+            if (typeof value === 'string') return value;
+            if (value && typeof value === 'object') {
+                if (Array.isArray(value)) {
+                    return value.length > 0 ? this.getString(value[0]) : '';
+                }
+                if (value[this.locale] !== undefined && value[this.locale] !== null) {
+                    return this.getString(value[this.locale]);
+                }
+                let values = Object.values(value);
+                return values.length > 0 ? this.getString(values[0]) : '';
+            }
+            return '';
+        },
 
         get displayTitle() {
-            return this.title || '{{ __("filament-seo-pro::seo.preview.untitled") }}';
+            return this.getString(this.title) || '{{ __("filament-seo-pro::seo.preview.untitled") }}';
         },
 
         get displayDescription() {
-            return this.description
-                ? (this.description.length > 160 ? this.description.substring(0, 160) + '...' : this.description)
+            let d = this.getString(this.description);
+            return d
+                ? (d.length > 160 ? d.substring(0, 160) + '...' : d)
                 : '{{ __("filament-seo-pro::seo.preview.no_description") }}';
         },
 
         get hasImage() {
-            return this.image && this.image.length > 0;
+            let img = this.getString(this.image);
+            return img && img.length > 0;
         }
     }"
     x-on:seo-field-updated.window="
@@ -38,7 +56,7 @@
     {{-- Image --}}
     <div class="seo-pro-og-preview__image-container">
         <template x-if="hasImage">
-            <img :src="image" alt="" class="seo-pro-og-preview__image" />
+            <img :src="getString(image)" alt="" class="seo-pro-og-preview__image" />
         </template>
         <template x-if="!hasImage">
             <div class="seo-pro-og-preview__placeholder">

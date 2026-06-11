@@ -4,6 +4,73 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Basic Field Labels, Placeholders and Helpers
+    |--------------------------------------------------------------------------
+    */
+
+    'seo_title' => 'SEO Title',
+    'seo_title_placeholder' => 'Enter SEO title...',
+    'title_helper_empty' => 'No SEO title set. The search engine preview will fallback to the record title.',
+    'title_helper_short' => 'The SEO title is too short (:current characters). Minimum recommended length is :min characters.',
+    'title_helper_long' => 'The SEO title is too long (:current characters). Maximum recommended length is :max characters.',
+    'title_helper_optimal' => 'The SEO title length is optimal.',
+
+    'meta_description' => 'Meta Description',
+    'meta_description_placeholder' => 'Enter meta description...',
+    'description_helper_empty' => 'No meta description set. Search engines will automatically determine the description.',
+    'description_helper_short' => 'The meta description is too short (:current characters). Minimum recommended length is :min characters.',
+    'description_helper_long' => 'The meta description is too long (:current characters). Maximum recommended length is :max characters.',
+    'description_helper_optimal' => 'The meta description length is optimal.',
+
+    'focus_keyword' => 'Focus Keyword',
+    'focus_keyword_placeholder' => 'Enter focus keyword...',
+    'focus_keyword_helper' => 'Define the primary keyword this page aims to rank for.',
+
+    'keywords' => 'Keywords',
+    'keywords_placeholder' => 'Enter keywords separated by commas...',
+    'keywords_helper' => 'Meta keywords are mostly ignored by modern search engines but can be used for internal search or indexing.',
+
+    'canonical_url' => 'Canonical URL',
+    'robots' => 'Robots Meta',
+
+    'schema_type' => 'Schema Type',
+    'schema_type_placeholder' => 'Select schema type...',
+    'schema_type_helper' => 'Define the schema.org structured data type for this page.',
+
+    'open_graph' => 'Open Graph (Facebook)',
+    'open_graph_description' => 'Configure how your page appears when shared on Facebook, LinkedIn, and other social media platforms.',
+    'og_title' => 'OG Title',
+    'og_title_placeholder' => 'Enter Open Graph title...',
+    'og_description' => 'OG Description',
+    'og_description_placeholder' => 'Enter Open Graph description...',
+    'og_image' => 'OG Image',
+    'og_image_helper' => 'Recommended size: 1200x630 pixels. Aspect ratio: 1.91:1.',
+    'og_preview' => 'Facebook Preview',
+
+    'twitter_card' => 'Twitter Card',
+    'twitter_card_description' => 'Configure how your page appears when shared on Twitter / X.',
+    'twitter_title' => 'Twitter Title',
+    'twitter_title_placeholder' => 'Enter Twitter title...',
+    'twitter_description' => 'Twitter Description',
+    'twitter_description_placeholder' => 'Enter Twitter description...',
+    'twitter_image' => 'Twitter Image',
+    'twitter_image_helper' => 'Recommended size: 1200x600 pixels. Aspect ratio: 2:1.',
+    'twitter_preview' => 'Twitter / X Preview',
+
+    'schema_markup' => 'Schema Markup',
+    'schema_markup_description' => 'Structured data markup for search engines to better understand and display your content in search results.',
+    'schema_info' => 'Structured Data Info',
+    'schema_info_helper' => 'Configure JSON-LD schema markup below to enhance your search engine appearance.',
+
+    'section_label' => 'Search Engine Optimization',
+    'section_description' => 'Optimize your page\'s visibility in search results by configuring titles, descriptions, and social previews.',
+    'tab_label' => 'SEO',
+    'seo' => 'SEO',
+    'meta_settings' => 'Meta Settings',
+    'meta_settings_description' => 'Configure basic SEO settings including title, description, keywords, canonical URLs, and robots directives.',
+
+    /*
+    |--------------------------------------------------------------------------
     | Field Labels
     |--------------------------------------------------------------------------
     */
