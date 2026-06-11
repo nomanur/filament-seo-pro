@@ -3,7 +3,7 @@
         'name' => 'nomanur/filament-seo-pro',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '2bebea6307b632bdd12b24149d5fe9631a3d5b3e',
+        'reference' => '411d04f736b3b26d02bcdb607fd8fcb476d35587',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -829,7 +829,7 @@
         'nomanur/filament-seo-pro' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '2bebea6307b632bdd12b24149d5fe9631a3d5b3e',
+            'reference' => '411d04f736b3b26d02bcdb607fd8fcb476d35587',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
