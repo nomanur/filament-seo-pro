@@ -1,0 +1,75 @@
+{
+    "name": "nomanur/filament-seo-pro",
+    "description": "The definitive SEO toolkit for Filament — live analysis, Google preview, social cards, schema markup, and bulk management.",
+    "keywords": [
+        "filament",
+        "seo",
+        "filament-plugin",
+        "laravel",
+        "meta-tags",
+        "open-graph",
+        "twitter-cards",
+        "schema-markup",
+        "yoast",
+        "seo-analyzer"
+    ],
+    "homepage": "https://github.com/nomanur/filament-seo-pro",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Nomanur Rahman",
+            "email": "nomanurrahman@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "filament/filament": "^3.2 || ^4.0",
+        "filament/forms": "^3.2 || ^4.0",
+        "filament/tables": "^3.2 || ^4.0",
+        "filament/support": "^3.2 || ^4.0",
+        "illuminate/support": "^11.0 || ^12.0",
+        "livewire/livewire": "^3.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^9.0 || ^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nomanur\\FilamentSeoPro\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nomanur\\FilamentSeoPro\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage --min=90",
+        "analyse": "vendor/bin/phpstan analyse",
+        "format": "vendor/bin/pint",
+        "format-test": "vendor/bin/pint --test"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nomanur\\FilamentSeoPro\\SeoServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
