@@ -32,7 +32,7 @@ class SeoOverviewWidget extends Widget
     {
         $avg = SeoMeta::query()->avg('seo_score');
 
-        return (int) round($avg ?? 0);
+        return (int) round((float) ($avg ?? 0));
     }
 
     /**
