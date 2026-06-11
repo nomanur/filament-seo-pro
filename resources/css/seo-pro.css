@@ -588,3 +588,58 @@
     border-top: 1px solid var(--seo-pro-color-border);
     margin: 0;
 }
+
+/* ==========================================================================
+   Stat Icons & Colors (SeoManagement Page)
+   ========================================================================== */
+
+.seo-pro-stat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+}
+
+.seo-pro-stat-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.seo-pro-stat-icon--success {
+    background-color: rgb(240, 253, 244);
+    color: rgb(22, 163, 74);
+}
+.dark .seo-pro-stat-icon--success {
+    background-color: rgba(22, 163, 74, 0.2);
+    color: rgb(74, 222, 128);
+}
+
+.seo-pro-stat-icon--warning {
+    background-color: rgb(254, 252, 232);
+    color: rgb(202, 138, 4);
+}
+.dark .seo-pro-stat-icon--warning {
+    background-color: rgba(202, 138, 4, 0.2);
+    color: rgb(250, 204, 21);
+}
+
+.seo-pro-stat-icon--danger {
+    background-color: rgb(254, 242, 242);
+    color: rgb(220, 38, 38);
+}
+.dark .seo-pro-stat-icon--danger {
+    background-color: rgba(220, 38, 38, 0.2);
+    color: rgb(248, 113, 113);
+}
+
+.seo-pro-stat-icon--info {
+    background-color: rgb(239, 246, 255);
+    color: rgb(37, 99, 235);
+}
+.dark .seo-pro-stat-icon--info {
+    background-color: rgba(37, 99, 235, 0.2);
+    color: rgb(96, 165, 250);
+}

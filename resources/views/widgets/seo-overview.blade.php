@@ -2,7 +2,7 @@
     <x-filament::section>
         <x-slot name="heading">
             <div class="flex items-center gap-2">
-                <x-heroicon-o-magnifying-glass-circle class="h-5 w-5 text-primary-500" />
+                <x-heroicon-o-magnifying-glass-circle class="h-5 w-5 text-primary-500" style="width: 1.25rem; height: 1.25rem;" />
                 {{ __('filament-seo-pro::seo.seo_overview') }}
             </div>
         </x-slot>

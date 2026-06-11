@@ -6,7 +6,7 @@
             <x-filament::section>
                 <div class="flex items-center gap-x-3">
                     <div class="seo-pro-stat-icon seo-pro-stat-icon--{{ $this->getColorForScore($this->getAverageScore()) }}">
-                        <x-heroicon-o-chart-bar class="h-6 w-6" />
+                        <x-heroicon-o-chart-bar class="h-6 w-6" style="width: 1.5rem; height: 1.5rem;" />
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -24,7 +24,7 @@
             <x-filament::section>
                 <div class="flex items-center gap-x-3">
                     <div class="seo-pro-stat-icon seo-pro-stat-icon--warning">
-                        <x-heroicon-o-document-minus class="h-6 w-6" />
+                        <x-heroicon-o-document-minus class="h-6 w-6" style="width: 1.5rem; height: 1.5rem;" />
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -41,7 +41,7 @@
             <x-filament::section>
                 <div class="flex items-center gap-x-3">
                     <div class="seo-pro-stat-icon seo-pro-stat-icon--warning">
-                        <x-heroicon-o-document-text class="h-6 w-6" />
+                        <x-heroicon-o-document-text class="h-6 w-6" style="width: 1.5rem; height: 1.5rem;" />
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
@@ -58,7 +58,7 @@
             <x-filament::section>
                 <div class="flex items-center gap-x-3">
                     <div class="seo-pro-stat-icon seo-pro-stat-icon--{{ $this->getHealthyPercentage() >= 60 ? 'success' : 'warning' }}">
-                        <x-heroicon-o-heart class="h-6 w-6" />
+                        <x-heroicon-o-heart class="h-6 w-6" style="width: 1.5rem; height: 1.5rem;" />
                     </div>
                     <div>
                         <p class="text-sm font-medium text-gray-500 dark:text-gray-400">
