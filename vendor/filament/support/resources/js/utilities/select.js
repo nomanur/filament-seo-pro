@@ -615,7 +615,7 @@ export class Select {
             if (renderVersion === this.selectedDisplayVersion) {
                 this.selectedDisplay.replaceChildren(fragment)
                 if (this.isOpen) {
-                    this.positionDropdown()
+                    this.deferPositionDropdown()
                 }
             }
             return
@@ -1549,6 +1549,25 @@ export class Select {
         })
     }
 
+    // Queue a dropdown position update to run after the DOM has painted.
+    // This avoids incorrect measurements right after async render/update cycles
+    // (e.g., after `getSearchResultsUsing()`) where layout isn't stable yet.
+    deferPositionDropdown() {
+        if (!this.isOpen) return
+
+        // Coalesce multiple rapid calls
+        if (this.positioningRequestAnimationFrame) {
+            cancelAnimationFrame(this.positioningRequestAnimationFrame)
+            this.positioningRequestAnimationFrame = null
+        }
+
+        this.positioningRequestAnimationFrame = requestAnimationFrame(() => {
+            this.positionDropdown()
+
+            this.positioningRequestAnimationFrame = null
+        })
+    }
+
     closeDropdown() {
         this.dropdown.style.display = 'none'
         this.selectButton.setAttribute('aria-expanded', 'false')
@@ -1808,7 +1827,7 @@ export class Select {
 
                 // Reevaluate dropdown position after search results are updated
                 if (this.isOpen) {
-                    this.positionDropdown()
+                    this.deferPositionDropdown()
                 }
 
                 // If no results found, show "No results" message
@@ -1851,6 +1870,11 @@ export class Select {
             ? this.searchingMessage
             : this.loadingMessage
         this.dropdown.appendChild(loadingItem)
+
+        // Reposition dropdown after DOM changes
+        if (this.isOpen) {
+            this.deferPositionDropdown()
+        }
     }
 
     hideLoadingState() {
@@ -1877,6 +1901,11 @@ export class Select {
         noOptionsItem.className = 'fi-select-input-message'
         noOptionsItem.textContent = this.noOptionsMessage
         this.dropdown.appendChild(noOptionsItem)
+
+        // Reposition dropdown after DOM changes
+        if (this.isOpen) {
+            this.deferPositionDropdown()
+        }
     }
 
     showNoResultsMessage() {
@@ -1893,6 +1922,11 @@ export class Select {
         noResultsItem.className = 'fi-select-input-message'
         noResultsItem.textContent = this.noSearchResultsMessage
         this.dropdown.appendChild(noResultsItem)
+
+        // Reposition dropdown after DOM changes
+        if (this.isOpen) {
+            this.deferPositionDropdown()
+        }
     }
 
     filterOptions(query) {
@@ -2010,7 +2044,7 @@ export class Select {
 
             // Reevaluate dropdown position after options are removed
             if (this.isOpen) {
-                this.positionDropdown()
+                this.deferPositionDropdown()
             }
 
             this.maintainFocusInMultipleMode()
@@ -2048,7 +2082,7 @@ export class Select {
 
         // Reevaluate dropdown position after options are added
         if (this.isOpen) {
-            this.positionDropdown()
+            this.deferPositionDropdown()
         }
 
         this.maintainFocusInMultipleMode()

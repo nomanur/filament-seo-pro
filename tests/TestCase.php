@@ -7,6 +7,7 @@ namespace Nomanur\FilamentSeoPro\Tests;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Schema;
+use Livewire\LivewireServiceProvider;
 use Nomanur\FilamentSeoPro\SeoServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
@@ -28,6 +29,7 @@ abstract class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app): array
     {
         return [
+            LivewireServiceProvider::class,
             SeoServiceProvider::class,
         ];
     }

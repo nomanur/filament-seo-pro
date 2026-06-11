@@ -4,7 +4,6 @@ namespace Livewire\Features\SupportReleaseTokens;
 
 use Livewire\Exceptions\ComponentNotFoundException;
 use Livewire\Exceptions\LivewireReleaseTokenMismatchException;
-use Livewire\Mechanisms\ComponentRegistry;
 
 class ReleaseToken {
     // This token is stored client-side and sent along with each request to check
@@ -15,7 +14,7 @@ class ReleaseToken {
     static function verify($snapshot): void
     {
         try {
-            $componentClass = app(ComponentRegistry::class)->getClass($snapshot['memo']['name']);
+            $componentClass = app('livewire.factory')->resolveComponentClass($snapshot['memo']['name']);
         } catch (ComponentNotFoundException) {
             throw new LivewireReleaseTokenMismatchException;
         }

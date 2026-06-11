@@ -22,7 +22,7 @@ Action::make('delete')
     ->requiresConfirmation()
 ```
 
-<AutoScreenshot name="actions/modal/confirmation" alt="Confirmation modal" version="4.x" />
+<AutoScreenshot name="actions/modal/confirmation" alt="Confirmation modal" version="5.x" />
 
 <Aside variant="warning">
     The confirmation modal is not available when a `url()` is set instead of an `action()`. Instead, you should redirect to the URL within the `action()` closure.
@@ -46,7 +46,7 @@ Action::make('delete')
     ->modalSubmitActionLabel('Yes, delete it')
 ```
 
-<AutoScreenshot name="actions/modal/confirmation-custom-text" alt="Confirmation modal with custom text" version="4.x" />
+<AutoScreenshot name="actions/modal/confirmation-custom-text" alt="Confirmation modal with custom text" version="5.x" />
 
 ### Rendering a schema in a modal
 
@@ -85,9 +85,9 @@ Action::make('viewUser')
     ])
 ```
 
-<UtilityInjection set="actions" version="4.x">As well as allowing a static value, the `schema()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">As well as allowing a static value, the `schema()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
 
-<AutoScreenshot name="actions/modal/schema" alt="Modal with schema layout" version="4.x" />
+<AutoScreenshot name="actions/modal/schema" alt="Modal with schema layout" version="5.x" />
 
 #### Rendering a form in a modal
 
@@ -112,7 +112,7 @@ Action::make('updateAuthor')
     })
 ```
 
-<AutoScreenshot name="actions/modal/form" alt="Modal with form" version="4.x" />
+<AutoScreenshot name="actions/modal/form" alt="Modal with form" version="5.x" />
 
 ##### Filling the form with existing data
 
@@ -140,7 +140,7 @@ Action::make('updateAuthor')
     })
 ```
 
-<UtilityInjection set="actions" version="4.x">The `fillForm()` method also accepts a function to dynamically calculate the data to fill the form with. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `fillForm()` method also accepts a function to dynamically calculate the data to fill the form with. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 ##### Disabling all form fields
 
@@ -163,7 +163,7 @@ Action::make('approvePost')
     })
 ```
 
-<AutoScreenshot name="actions/modal/disabled-form" alt="Modal with disabled form fields" version="4.x" />
+<AutoScreenshot name="actions/modal/disabled-form" alt="Modal with disabled form fields" version="5.x" />
 
 #### Rendering a wizard in a modal
 
@@ -206,7 +206,7 @@ Action::make('create')
     ])
 ```
 
-<AutoScreenshot name="actions/modal/wizard" alt="Modal with wizard" version="4.x" />
+<AutoScreenshot name="actions/modal/wizard" alt="Modal with wizard" version="5.x" />
 
 ### Adding an icon inside the modal
 
@@ -222,9 +222,9 @@ Action::make('delete')
     ->modalIcon('heroicon-o-trash')
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalIcon()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalIcon()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
-<AutoScreenshot name="actions/modal/icon" alt="Confirmation modal with icon" version="4.x" />
+<AutoScreenshot name="actions/modal/icon" alt="Confirmation modal with icon" version="5.x" />
 
 By default, the icon will inherit the color of the action button. You may customize the color of the icon using the `modalIconColor()` method:
 
@@ -240,9 +240,9 @@ Action::make('delete')
     ->modalIconColor('warning')
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalIconColor()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalIconColor()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
-<AutoScreenshot name="actions/modal/icon-color" alt="Confirmation modal with custom icon color" version="4.x" />
+<AutoScreenshot name="actions/modal/icon-color" alt="Confirmation modal with custom icon color" version="5.x" />
 
 ### Customizing the alignment of modal content
 
@@ -262,9 +262,9 @@ Action::make('updateAuthor')
     ->modalAlignment(Alignment::Center)
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalAlignment()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalAlignment()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
-<AutoScreenshot name="actions/modal/alignment" alt="Modal with centered content alignment" version="4.x" />
+<AutoScreenshot name="actions/modal/alignment" alt="Modal with centered content alignment" version="5.x" />
 
 ### Making the modal header sticky
 
@@ -300,7 +300,7 @@ Action::make('updateAuthor')
     ->stickyModalFooter()
 ```
 
-<AutoScreenshot name="actions/modal/sticky-header" alt="Modal with sticky header and footer" version="4.x" />
+<AutoScreenshot name="actions/modal/sticky-header" alt="Modal with sticky header and footer" version="5.x" />
 
 ### Custom modal content
 
@@ -315,7 +315,7 @@ Action::make('advance')
     ->modalContent(view('filament.pages.actions.advance'))
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalContent()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalContent()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 #### Passing data to the custom modal content
 
@@ -346,7 +346,7 @@ Action::make('advance')
     ->modalContentFooter(view('filament.pages.actions.advance'))
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalContentFooter()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalContentFooter()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 #### Adding an action to custom modal content
 
@@ -395,7 +395,7 @@ Action::make('updateAuthor')
     ->slideOver()
 ```
 
-<AutoScreenshot name="actions/modal/slide-over" alt="Slide over with form" version="4.x" />
+<AutoScreenshot name="actions/modal/slide-over" alt="Slide over with form" version="5.x" />
 
 Instead of opening in the center of the screen, the modal content will now slide in from the right and consume the entire height of the browser.
 
@@ -418,7 +418,7 @@ Action::make('updateAuthor')
     ->slideOverPosition(SlideOverPosition::Start)
 ```
 
-<AutoScreenshot name="actions/modal/slide-over-start" alt="Slide over from the start of the screen" version="4.x" />
+<AutoScreenshot name="actions/modal/slide-over-start" alt="Slide over from the start of the screen" version="5.x" />
 
 This is useful when the action trigger sits near the start of the viewport — for example, a row action at the beginning of a table row — so the slide-over opens adjacent to its trigger instead of across the screen.
 
@@ -440,9 +440,9 @@ Action::make('updateAuthor')
     ->modalWidth(Width::FiveExtraLarge)
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalWidth()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalWidth()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
-<AutoScreenshot name="actions/modal/wide" alt="Modal with custom width" version="4.x" />
+<AutoScreenshot name="actions/modal/wide" alt="Modal with custom width" version="5.x" />
 
 ## Executing code when the modal opens
 
@@ -513,9 +513,9 @@ Action::make('create')
     ])
 ```
 
-<UtilityInjection set="actions" version="4.x">The `extraModalFooterActions()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `extraModalFooterActions()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
-<AutoScreenshot name="actions/modal/extra-footer-actions" alt="Modal with extra footer action buttons" version="4.x" />
+<AutoScreenshot name="actions/modal/extra-footer-actions" alt="Modal with extra footer action buttons" version="5.x" />
 
 `$action->makeModalSubmitAction()` returns an action instance that can be customized using the [methods available to customize trigger buttons](overview).
 
@@ -706,7 +706,7 @@ Action::make('updateAuthor')
     ->closeModalByClickingAway(false)
 ```
 
-<UtilityInjection set="actions" version="4.x">The `closeModalByClickingAway()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `closeModalByClickingAway()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 If you'd like to change the behavior for all modals in the application, you can do so by calling `ModalComponent::closedByClickingAway()` inside a service provider or middleware:
 
@@ -733,7 +733,7 @@ Action::make('updateAuthor')
     ->closeModalByEscaping(false)
 ```
 
-<UtilityInjection set="actions" version="4.x">The `closeModalByEscaping()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `closeModalByEscaping()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 If you'd like to change the behavior for all modals in the application, you can do so by calling `ModalComponent::closedByEscaping()` inside a service provider or middleware:
 
@@ -760,7 +760,7 @@ Action::make('updateAuthor')
     ->modalCloseButton(false)
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalCloseButton()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalCloseButton()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 If you'd like to hide the close button for all modals in the application, you can do so by calling `ModalComponent::closeButton(false)` inside a service provider or middleware:
 
@@ -770,7 +770,7 @@ use Filament\Support\View\Components\ModalComponent;
 ModalComponent::closeButton(false);
 ```
 
-<AutoScreenshot name="actions/modal/no-close-button" alt="Modal without a close button" version="4.x" />
+<AutoScreenshot name="actions/modal/no-close-button" alt="Modal without a close button" version="5.x" />
 
 ## Preventing the modal from autofocusing
 
@@ -789,7 +789,7 @@ Action::make('updateAuthor')
     ->modalAutofocus(false)
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalAutofocus()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalAutofocus()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 If you'd like to disable autofocus for all modals in the application, you can do so by calling `ModalComponent::autofocus(false)` inside a service provider or middleware:
 
@@ -827,7 +827,7 @@ Action::make('editItems')
 
 In this example, when the user clicks the delete button on a repeater item, the confirmation dialog appears on top of the slide-over instead of the slide-over closing first. This creates a smoother experience, especially for actions inside slide-overs or complex forms where closing and reopening the parent would be disorienting.
 
-<AutoScreenshot name="actions/modal/overlaying-child" alt="Child confirmation modal overlaying a parent slide-over" version="4.x" />
+<AutoScreenshot name="actions/modal/overlaying-child" alt="Child confirmation modal overlaying a parent slide-over" version="5.x" />
 
 ## Optimizing modal configuration methods
 
@@ -857,7 +857,7 @@ Action::make('create')
     ->modalContent(view('filament.pages.actions.create'))
 ```
 
-<UtilityInjection set="actions" version="4.x">The `modalHidden()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">The `modalHidden()` method also accepts a function to dynamically calculate the value. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 ## Adding extra attributes to the modal window
 
@@ -870,7 +870,7 @@ Action::make('updateAuthor')
     ->extraModalWindowAttributes(['class' => 'update-author-modal'])
 ```
 
-<UtilityInjection set="actions" version="4.x">As well as allowing a static value, the `extraModalWindowAttributes()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">As well as allowing a static value, the `extraModalWindowAttributes()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 <Aside variant="tip">
     By default, calling `extraModalWindowAttributes()` multiple times will overwrite the previous attributes. If you wish to merge the attributes instead, you can pass `merge: true` to the method.
@@ -888,7 +888,7 @@ Action::make('updateAuthor')
     ->extraModalOverlayAttributes(['class' => 'update-author-overlay'])
 ```
 
-<UtilityInjection set="actions" version="4.x">As well as allowing a static value, the `extraModalOverlayAttributes()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
+<UtilityInjection set="actions" version="5.x">As well as allowing a static value, the `extraModalOverlayAttributes()` method also accepts a function to dynamically calculate it. You can inject various utilities into the function as parameters.</UtilityInjection>
 
 <Aside variant="tip">
     By default, calling `extraModalOverlayAttributes()` multiple times will overwrite the previous attributes. If you wish to merge the attributes instead, you can pass <code>merge: true</code> to the method.

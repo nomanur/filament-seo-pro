@@ -78,16 +78,8 @@ export default (Alpine) => {
         configureAnimations() {
             let animation
 
-            this.unsubscribeLivewireHook = Livewire.hook(
-                'commit',
-                ({ component, commit, succeed, fail, respond }) => {
-                    if (
-                        !component.snapshot.data
-                            .isFilamentNotificationsComponent
-                    ) {
-                        return
-                    }
-
+            this.unsubscribeLivewireHook = Livewire.interceptMessage(
+                ({ onFinish, onSuccess }) => {
                     // Calling `el.getBoundingClientRect()` from outside `requestAnimationFrame()` can
                     // occasionally cause the page to scroll to the top.
                     requestAnimationFrame(() => {
@@ -95,7 +87,7 @@ export default (Alpine) => {
                             this.$el.getBoundingClientRect().top
                         const oldTop = getTop()
 
-                        respond(() => {
+                        onFinish(() => {
                             animation = () => {
                                 if (!this.isShown) {
                                     return
@@ -104,9 +96,7 @@ export default (Alpine) => {
                                 this.$el.animate(
                                     [
                                         {
-                                            transform: `translateY(${
-                                                oldTop - getTop()
-                                            }px)`,
+                                            transform: `translateY(${oldTop - getTop()}px)`,
                                         },
                                         { transform: 'translateY(0px)' },
                                     ],
@@ -122,8 +112,17 @@ export default (Alpine) => {
                                 .forEach((animation) => animation.finish())
                         })
 
-                        succeed(({ snapshot, effect }) => {
-                            animation()
+                        onSuccess(({ payload }) => {
+                            if (
+                                !payload?.snapshot?.data
+                                    ?.isFilamentNotificationsComponent
+                            ) {
+                                return
+                            }
+
+                            if (typeof animation === 'function') {
+                                animation()
+                            }
                         })
                     })
                 },
