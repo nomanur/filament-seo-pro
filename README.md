@@ -6,6 +6,8 @@
 
 The definitive SEO toolkit for Filament v4.
 
+For full developer documentation, guides, and interactive configurations, visit [nomanur.github.io/filament-seo-pro](https://nomanur.github.io/filament-seo-pro/).
+
 Filament SEO Pro brings a complete Yoast-like SEO experience directly into your Filament panels. It provides live analysis of your content as you type, Google and social media preview cards, Schema.org type selection, a dashboard widget, and a bulk SEO management page.
 
 ## Features
