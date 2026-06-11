@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filament SEO Pro — Developer Documentation</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
     <!-- Prism.js for code highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    
+
     <style>
         /* Modern Design Tokens */
         :root {
@@ -30,15 +33,15 @@
             --accent-rose: #f43f5e;
             --accent-blue: #3b82f6;
             --accent-orange: #f97316;
-            
+
             --gradient-primary: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-cyan) 100%);
             --gradient-border: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(6, 182, 212, 0.3) 100%);
             --gradient-glow: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-            
+
             --font-outfit: 'Outfit', sans-serif;
             --font-inter: 'Inter', sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
-            
+
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -667,12 +670,15 @@
                 height: calc(100vh - 60px);
                 width: 100%;
             }
+
             .sidebar.active {
                 transform: translateX(0);
             }
+
             .mobile-header {
                 display: flex;
             }
+
             .main-content {
                 margin-left: 0;
                 padding-top: 5.5rem;
@@ -682,6 +688,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Mobile Header -->
@@ -691,7 +698,8 @@
             <span class="brand-name">Filament SEO Pro</span>
         </a>
         <button class="menu-toggle" id="menu-toggle">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 28px; height: 28px;">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" style="width: 28px; height: 28px;">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
         </button>
@@ -703,10 +711,12 @@
             <div class="brand-logo">S</div>
             <span class="brand-name">Filament SEO Pro</span>
         </a>
-        
+
         <div class="search-container">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="search-icon">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.603 10.603z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="search-icon">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.603 10.603z" />
             </svg>
             <input type="text" class="search-input" id="search-input" placeholder="Search documentation...">
         </div>
@@ -715,16 +725,16 @@
             <ul class="nav-list">
                 <li class="nav-item active"><a href="#introduction">Introduction</a></li>
                 <li class="nav-item"><a href="#features">Key Features</a></li>
-                
+
                 <li class="nav-group-title">Getting Started</li>
                 <li class="nav-item"><a href="#installation">Installation</a></li>
                 <li class="nav-item"><a href="#setup">Initial Setup</a></li>
-                
+
                 <li class="nav-group-title">Architecture</li>
                 <li class="nav-item"><a href="#models">Model Configuration</a></li>
                 <li class="nav-item"><a href="#forms">Form Components</a></li>
                 <li class="nav-item"><a href="#config-explorer">Interactive Configurator</a></li>
-                
+
                 <li class="nav-group-title">Customization & Rendering</li>
                 <li class="nav-item"><a href="#config-reference">Configuration Details</a></li>
                 <li class="nav-item"><a href="#frontend">Frontend Rendering</a></li>
@@ -736,20 +746,31 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        
+
         <!-- Introduction -->
         <section id="introduction">
             <h1>Filament SEO Pro</h1>
-            <p style="font-size: 0.95rem; color: var(--accent-cyan); font-weight: 600; margin-top: -0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.4rem;">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 16px; height: 16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+            <p
+                style="font-size: 0.95rem; color: var(--accent-cyan); font-weight: 600; margin-top: -0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" style="width: 16px; height: 16px;">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" />
+                </svg>
                 Developed by Nomanur Rahman
             </p>
-            <p>The definitive SEO toolkit for Filament v4. Bring a complete, Yoast-like content analysis system, Google searches, social media preview cards, Schema markup, and automated metrics into your Filament Admin panels.</p>
-            
+            <p>The definitive SEO toolkit for Filament v4. Bring a complete, Yoast-like content analysis system, Google
+                searches, social media preview cards, Schema markup, and automated metrics into your Filament Admin
+                panels.</p>
+
             <div class="badge-container">
                 <span class="badge badge-accent">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 14px; height: 14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
-                    v4.0.0
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" style="width: 14px; height: 14px;">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                    </svg>
+                    v0.1.0
                 </span>
                 <span class="badge">PHP 8.2+</span>
                 <span class="badge">Laravel 10 / 11 / 12</span>
@@ -759,11 +780,17 @@
 
             <div class="alert">
                 <div class="alert-icon text-accent-blue">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 111.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" style="width: 24px; height: 24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M11.25 11.25l.041-.02a.75.75 0 111.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                    </svg>
                 </div>
                 <div class="alert-content">
                     <h4>Prerequisites</h4>
-                    <p>This package integrates deep SEO checks directly inside your panel provider. You will need a working Laravel application running Filament. Active support is optimized for Filament v4 panels.</p>
+                    <p>This package integrates deep SEO checks directly inside your panel provider. You will need a
+                        working Laravel application running Filament. Active support is optimized for Filament v4
+                        panels.</p>
                 </div>
             </div>
         </section>
@@ -771,38 +798,45 @@
         <!-- Key Features -->
         <section id="features">
             <h2>Key Features</h2>
-            <p>Filament SEO Pro is designed from the ground up to provide a world-class editor experience. No external API requests are performed during editing, ensuring zero latency and privacy compliance.</p>
-            
+            <p>Filament SEO Pro is designed from the ground up to provide a world-class editor experience. No external
+                API requests are performed during editing, ensuring zero latency and privacy compliance.</p>
+
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🔍</div>
                     <div class="feature-title">Live SEO Analysis</div>
-                    <div class="feature-desc">13 checks testing focus keywords, content lengths, title tags, metadata density, and internal link configurations in real time.</div>
+                    <div class="feature-desc">13 checks testing focus keywords, content lengths, title tags, metadata
+                        density, and internal link configurations in real time.</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📖</div>
                     <div class="feature-title">Readability Analyzer</div>
-                    <div class="feature-desc">Engine computes Flesch-Kincaid-inspired indices, highlighting transition word usage, passive voice percentage, and paragraph structures.</div>
+                    <div class="feature-desc">Engine computes Flesch-Kincaid-inspired indices, highlighting transition
+                        word usage, passive voice percentage, and paragraph structures.</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💻</div>
                     <div class="feature-title">SERP Live Previews</div>
-                    <div class="feature-desc">Visualizes real-time Google search snippet rendering. Support includes both mobile and desktop view configurations.</div>
+                    <div class="feature-desc">Visualizes real-time Google search snippet rendering. Support includes
+                        both mobile and desktop view configurations.</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🌐</div>
                     <div class="feature-title">Social Cards Previews</div>
-                    <div class="feature-desc">Visual preview cards for Open Graph (Facebook, LinkedIn) and Twitter/X, with custom image, title, and description options.</div>
+                    <div class="feature-desc">Visual preview cards for Open Graph (Facebook, LinkedIn) and Twitter/X,
+                        with custom image, title, and description options.</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📊</div>
                     <div class="feature-title">SEO Management Page</div>
-                    <div class="feature-desc">A centralized, bulk administration panel mapping all configured Models, listing SEO scores, filter structures, and CSV exports.</div>
+                    <div class="feature-desc">A centralized, bulk administration panel mapping all configured Models,
+                        listing SEO scores, filter structures, and CSV exports.</div>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">⚡</div>
                     <div class="feature-title">Performance Cache</div>
-                    <div class="feature-desc">Scores and analysis states can be queued asynchronously and cached locally to prevent database load spikes.</div>
+                    <div class="feature-desc">Scores and analysis states can be queued asynchronously and cached locally
+                        to prevent database load spikes.</div>
                 </div>
             </div>
         </section>
@@ -810,8 +844,9 @@
         <!-- Installation -->
         <section id="installation">
             <h2>Installation</h2>
-            <p>Bring the package into your repository via composer. Follow these steps to configure databases and assets.</p>
-            
+            <p>Bring the package into your repository via composer. Follow these steps to configure databases and
+                assets.</p>
+
             <div class="timeline">
                 <div class="timeline-step">
                     <span class="timeline-num">1</span>
@@ -821,11 +856,12 @@
                         <pre><code class="language-bash">composer require nomanur/filament-seo-pro</code></pre>
                     </div>
                 </div>
-                
+
                 <div class="timeline-step">
                     <span class="timeline-num">2</span>
                     <div class="timeline-title">Publish Frontend Assets</div>
-                    <p>Assets are managed locally via Filament's asset manager. Publish them into your public directory:</p>
+                    <p>Assets are managed locally via Filament's asset manager. Publish them into your public directory:
+                    </p>
                     <div class="code-container">
                         <pre><code class="language-bash">php artisan filament:assets</code></pre>
                     </div>
@@ -834,7 +870,8 @@
                 <div class="timeline-step">
                     <span class="timeline-num">3</span>
                     <div class="timeline-title">Run Polymorphic Migrations</div>
-                    <p>Publish and run the migrations to create the database table `seo_meta` that stores all records polymorphically:</p>
+                    <p>Publish and run the migrations to create the database table `seo_meta` that stores all records
+                        polymorphically:</p>
                     <div class="code-container">
                         <pre><code class="language-bash">php artisan vendor:publish --tag="filament-seo-pro-migrations"
 php artisan migrate</code></pre>
@@ -855,10 +892,13 @@ php artisan migrate</code></pre>
         <!-- Setup -->
         <section id="setup">
             <h2>Initial Setup</h2>
-            <p>Register the plugin directly inside your panel provider class. This binds all page builders and widget registers.</p>
-            
-            <p>Edit your panel provider (typically <a class="inline-file-link" href="file:///app/Providers/Filament/AdminPanelProvider.php">app/Providers/Filament/AdminPanelProvider.php</a>):</p>
-            
+            <p>Register the plugin directly inside your panel provider class. This binds all page builders and widget
+                registers.</p>
+
+            <p>Edit your panel provider (typically <a class="inline-file-link"
+                    href="file:///app/Providers/Filament/AdminPanelProvider.php">app/Providers/Filament/AdminPanelProvider.php</a>):
+            </p>
+
             <div class="code-container">
                 <pre><code class="language-php">&lt;?php
 
@@ -894,10 +934,13 @@ class AdminPanelProvider extends PanelProvider
         <!-- Models -->
         <section id="models">
             <h2>Model Configuration</h2>
-            <p>To associate SEO attributes with a model, apply the <code class="language-php">HasSeo</code> trait. This creates a polymorphic relationship to the <a class="inline-file-link" href="file:///Users/nomanur/Packages/filament-seo-pro/src/Models/SeoMeta.php">SeoMeta</a> model.</p>
-            
-            <p>Example using a `Post` model (<a class="inline-file-link" href="file:///app/Models/Post.php">app/Models/Post.php</a>):</p>
-            
+            <p>To associate SEO attributes with a model, apply the <code class="language-php">HasSeo</code> trait. This
+                creates a polymorphic relationship to the <a class="inline-file-link"
+                    href="file:///Users/nomanur/Packages/filament-seo-pro/src/Models/SeoMeta.php">SeoMeta</a> model.</p>
+
+            <p>Example using a `Post` model (<a class="inline-file-link"
+                    href="file:///app/Models/Post.php">app/Models/Post.php</a>):</p>
+
             <div class="code-container">
                 <pre><code class="language-php">&lt;?php
 
@@ -919,8 +962,10 @@ class Post extends Model
             </div>
 
             <h3>Available Trait Helper Methods</h3>
-            <p>The <a class="inline-file-link" href="file:///Users/nomanur/Packages/filament-seo-pro/src/Traits/HasSeo.php">HasSeo</a> trait provides several helpful runtime methods:</p>
-            
+            <p>The <a class="inline-file-link"
+                    href="file:///Users/nomanur/Packages/filament-seo-pro/src/Traits/HasSeo.php">HasSeo</a> trait
+                provides several helpful runtime methods:</p>
+
             <table>
                 <thead>
                     <tr>
@@ -960,11 +1005,17 @@ class Post extends Model
 
             <div class="alert alert-warning">
                 <div class="alert-icon text-accent-orange">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" style="width: 24px; height: 24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
                 </div>
                 <div class="alert-content">
                     <h4>Automatic Cascade Deletion</h4>
-                    <p>When you call <code>$model->delete()</code>, the trait boots a deleting listener that automatically deletes the associated <code>SeoMeta</code> record from the database to prevent orphaned records.</p>
+                    <p>When you call <code>$model->delete()</code>, the trait boots a deleting listener that
+                        automatically deletes the associated <code>SeoMeta</code> record from the database to prevent
+                        orphaned records.</p>
                 </div>
             </div>
         </section>
@@ -972,11 +1023,13 @@ class Post extends Model
         <!-- Forms -->
         <section id="forms">
             <h2>Form Integration</h2>
-            <p>You can choose between two form components depending on your resource layout: <strong>Tabs</strong> or <strong>Sections</strong>.</p>
-            
+            <p>You can choose between two form components depending on your resource layout: <strong>Tabs</strong> or
+                <strong>Sections</strong>.</p>
+
             <h3>Option A: Drop-in Tab (Recommended)</h3>
-            <p>If your form uses Filament's `Tabs` component, simply register the tab. Place this in your resource form method:</p>
-            
+            <p>If your form uses Filament's `Tabs` component, simply register the tab. Place this in your resource form
+                method:</p>
+
             <div class="code-container">
                 <pre><code class="language-php">use Filament\Forms\Components\Tabs;
 use Nomanur\FilamentSeoPro\Forms\SeoTab;
@@ -999,7 +1052,7 @@ public static function form(Form $form): Form
 
             <h3>Option B: Inline Section</h3>
             <p>If your form does not use tabs, you can use the collapsible section component instead:</p>
-            
+
             <div class="code-container">
                 <pre><code class="language-php">use Nomanur\FilamentSeoPro\Forms\SeoSection;
 
@@ -1015,8 +1068,9 @@ public static function form(Form $form): Form
             </div>
 
             <h3>Overriding Defaults on the Fly</h3>
-            <p>By default, the plugin queries global configs to fetch fields. You can override these mapping rules dynamically on specific resource forms:</p>
-            
+            <p>By default, the plugin queries global configs to fetch fields. You can override these mapping rules
+                dynamically on specific resource forms:</p>
+
             <div class="code-container">
                 <pre><code class="language-php">SeoTab::make()
     ->contentField('post_body')  // Bind to custom body field name
@@ -1028,8 +1082,9 @@ public static function form(Form $form): Form
         <!-- Interactive Configurator -->
         <section id="config-explorer">
             <h2>Interactive Plugin Builder</h2>
-            <p>Use this utility to configure your panel integration options. Tweak the inputs below, and copy the instantly updated PHP code for your PanelProvider registration.</p>
-            
+            <p>Use this utility to configure your panel integration options. Tweak the inputs below, and copy the
+                instantly updated PHP code for your PanelProvider registration.</p>
+
             <div class="config-generator">
                 <div class="gen-grid">
                     <div class="gen-controls">
@@ -1047,9 +1102,10 @@ public static function form(Form $form): Form
                         </div>
                         <div class="form-group">
                             <label for="cfg-models">Registered Models (comma separated)</label>
-                            <input type="text" id="cfg-models" class="form-control" value="App\Models\Post, App\Models\Page">
+                            <input type="text" id="cfg-models" class="form-control"
+                                value="App\Models\Post, App\Models\Page">
                         </div>
-                        
+
                         <div class="form-group" style="margin-top: 0.5rem;">
                             <label class="form-checkbox">
                                 <input type="checkbox" id="cfg-widget" checked>
@@ -1069,7 +1125,7 @@ public static function form(Form $form): Form
                             </label>
                         </div>
                     </div>
-                    
+
                     <div class="gen-output">
                         <div class="form-group" style="height: 100%;">
                             <label>Generated PHP Code</label>
@@ -1095,11 +1151,14 @@ public static function form(Form $form): Form
         <!-- Configuration Reference -->
         <section id="config-reference">
             <h2>Configuration Reference</h2>
-            <p>Publishing the configuration files creates two separate files in your config directory. Learn when and how to modify them below.</p>
-            
-            <h3>1. Panel Settings: <a class="inline-file-link" href="file:///Users/nomanur/Packages/filament-seo-pro/config/filament-seo-pro.php">config/filament-seo-pro.php</a></h3>
+            <p>Publishing the configuration files creates two separate files in your config directory. Learn when and
+                how to modify them below.</p>
+
+            <h3>1. Panel Settings: <a class="inline-file-link"
+                    href="file:///Users/nomanur/Packages/filament-seo-pro/config/filament-seo-pro.php">config/filament-seo-pro.php</a>
+            </h3>
             <p>Controls global field mapping fallbacks, translatable supports, cache lifetimes, and dashboard lists.</p>
-            
+
             <table>
                 <thead>
                     <tr>
@@ -1132,19 +1191,23 @@ public static function form(Form $form): Form
                     <tr>
                         <td><code>cache_ttl</code></td>
                         <td><code>3600</code></td>
-                        <td>Time (in seconds) to cache SEO grades. Set to <code>0</code> to disable database caching.</td>
+                        <td>Time (in seconds) to cache SEO grades. Set to <code>0</code> to disable database caching.
+                        </td>
                     </tr>
                     <tr>
                         <td><code>queue_analysis</code></td>
                         <td><code>false</code></td>
-                        <td>Offload heavy calculations to background queues instead of computing on form input triggers.</td>
+                        <td>Offload heavy calculations to background queues instead of computing on form input triggers.
+                        </td>
                     </tr>
                 </tbody>
             </table>
 
-            <h3>2. Engine Tuning: <a class="inline-file-link" href="file:///Users/nomanur/Packages/filament-seo-pro/config/config.php">config/config.php</a></h3>
-            <p>Fine-tune target reading indices, minimum word limits, passive voice indicators, and individual check point weights.</p>
-            
+            <h3>2. Engine Tuning: <a class="inline-file-link"
+                    href="file:///Users/nomanur/Packages/filament-seo-pro/config/config.php">config/config.php</a></h3>
+            <p>Fine-tune target reading indices, minimum word limits, passive voice indicators, and individual check
+                point weights.</p>
+
             <div class="code-container">
                 <pre><code class="language-php">// Snippet from config/config.php
 'readability' => [
@@ -1175,10 +1238,12 @@ public static function form(Form $form): Form
         <!-- Frontend Rendering -->
         <section id="frontend">
             <h2>Frontend Rendering</h2>
-            <p>To render the configured metadata tags, Open Graph, and Twitter Cards in your public HTML template, query the polymorphic relation directly inside your layout file.</p>
-            
-            <p>Insert this standard boilerplate inside the <code>&lt;head&gt;</code> tag of your global Blade layout (e.g., <code class="language-php">resources/views/layouts/app.blade.php</code>):</p>
-            
+            <p>To render the configured metadata tags, Open Graph, and Twitter Cards in your public HTML template, query
+                the polymorphic relation directly inside your layout file.</p>
+
+            <p>Insert this standard boilerplate inside the <code>&lt;head&gt;</code> tag of your global Blade layout
+                (e.g., <code class="language-php">resources/views/layouts/app.blade.php</code>):</p>
+
             <div class="code-container">
                 <pre><code class="language-html">&lt;head&gt;
     &lt;!-- Basic Meta Tags --&gt;
@@ -1225,14 +1290,19 @@ public static function form(Form $form): Form
     @endif
 &lt;/head&gt;</code></pre>
             </div>
-            
+
             <div class="alert alert-success">
                 <div class="alert-icon text-accent-emerald">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" style="width: 24px; height: 24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                    </svg>
                 </div>
                 <div class="alert-content">
                     <h4>Eager Loading Tip</h4>
-                    <p>To avoid N+1 query problems in lists or pages executing metadata reviews, eager load the SEO relationship in your controllers: <code>$posts = Post::with('seo')->get();</code></p>
+                    <p>To avoid N+1 query problems in lists or pages executing metadata reviews, eager load the SEO
+                        relationship in your controllers: <code>$posts = Post::with('seo')->get();</code></p>
                 </div>
             </div>
         </section>
@@ -1240,8 +1310,9 @@ public static function form(Form $form): Form
         <!-- Testing -->
         <section id="testing">
             <h2>Testing & CI</h2>
-            <p>Ensure that all local code contributions pass automated checks. The package contains a comprehensive suite of Pest tests and strict Larastan analysis rules.</p>
-            
+            <p>Ensure that all local code contributions pass automated checks. The package contains a comprehensive
+                suite of Pest tests and strict Larastan analysis rules.</p>
+
             <p>To execute the tests locally, run the following script:</p>
             <div class="code-container">
                 <pre><code class="language-bash">composer test</code></pre>
@@ -1262,24 +1333,33 @@ public static function form(Form $form): Form
         <section id="troubleshooting">
             <h2>Troubleshooting</h2>
             <p>Solutions to common issues encountered during setup or local package operations.</p>
-            
+
             <h3>1. Visual elements are blank or styles are broken</h3>
-            <p>If the Google Search Preview, readability panels, or SEO checklist fail to display styling inside your admin panel, re-publish the frontend assets. This moves the compiled package CSS files into Laravel's public asset storage:</p>
+            <p>If the Google Search Preview, readability panels, or SEO checklist fail to display styling inside your
+                admin panel, re-publish the frontend assets. This moves the compiled package CSS files into Laravel's
+                public asset storage:</p>
             <div class="code-container">
                 <pre><code class="language-bash">php artisan filament:assets</code></pre>
             </div>
 
             <h3>2. Model validation errors: SEO fields cannot accept null states</h3>
-            <p>If you encounter database level exceptions trying to save model forms, ensure you have executed migrations. The polymorphic relationship queries the <code>seo_meta</code> table, which creates non-null defaults for columns like <code>robots</code> and <code>seo_score</code>.</p>
-            
+            <p>If you encounter database level exceptions trying to save model forms, ensure you have executed
+                migrations. The polymorphic relationship queries the <code>seo_meta</code> table, which creates non-null
+                defaults for columns like <code>robots</code> and <code>seo_score</code>.</p>
+
             <h3>3. Spatie Translatable support is failing</h3>
-            <p>If you translate your content field (e.g. <code>content</code> is translated), make sure you enable Spatie support within your configuration or inside your panel provider registration by adding <code>->translatable(true)</code>.</p>
+            <p>If you translate your content field (e.g. <code>content</code> is translated), make sure you enable
+                Spatie support within your configuration or inside your panel provider registration by adding
+                <code>->translatable(true)</code>.</p>
         </section>
 
         <!-- Footer / Contact Info -->
-        <footer style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
-            <p>Developed with ❤️ by <span style="color: var(--text-primary); font-weight: 500;">Nomanur Rahman</span>.</p>
-            <p>Need support or custom integrations? Contact via email at <a href="mailto:nomanurrahman@gmail.com" style="color: var(--accent-cyan); text-decoration: none;">nomanurrahman@gmail.com</a>.</p>
+        <footer
+            style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
+            <p>Developed with ❤️ by <span style="color: var(--text-primary); font-weight: 500;">Nomanur Rahman</span>.
+            </p>
+            <p>Need support or custom integrations? Contact via email at <a href="mailto:nomanurrahman@gmail.com"
+                    style="color: var(--accent-cyan); text-decoration: none;">nomanurrahman@gmail.com</a>.</p>
         </footer>
 
     </main>
@@ -1288,7 +1368,7 @@ public static function form(Form $form): Form
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-bash.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
-    
+
     <!-- Custom JS for interactions -->
     <script>
         // Copy to clipboard
@@ -1328,7 +1408,7 @@ public static function form(Form $form): Form
 
         function updateConfig() {
             let code = `SeoPlugin::make()\n`;
-            
+
             if (cfgContent.value !== 'content') {
                 code += `    ->defaultContentField('${cfgContent.value}')\n`;
             }
@@ -1338,14 +1418,14 @@ public static function form(Form $form): Form
             if (cfgSlug.value !== 'slug') {
                 code += `    ->defaultSlugField('${cfgSlug.value}')\n`;
             }
-            
+
             code += `    ->enableDashboardWidget(${cfgWidget.checked ? 'true' : 'false'})\n`;
             code += `    ->enableManagementPage(${cfgPage.checked ? 'true' : 'false'})\n`;
-            
+
             if (cfgTranslatable.checked) {
                 code += `    ->translatable(true)\n`;
             }
-            
+
             if (cfgModels.value.trim() !== '') {
                 const models = cfgModels.value.split(',').map(m => m.trim()).filter(m => m !== '');
                 if (models.length > 0) {
@@ -1377,7 +1457,7 @@ public static function form(Form $form): Form
 
         function updateScrollspy() {
             let currentActive = 'introduction';
-            
+
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
                 if (window.scrollY >= sectionTop - 120) {
@@ -1404,19 +1484,19 @@ public static function form(Form $form): Form
         const searchInput = document.getElementById('search-input');
         searchInput.addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase().trim();
-            
+
             sections.forEach(section => {
                 const h1 = section.querySelector('h1')?.innerText.toLowerCase() || '';
                 const h2 = section.querySelector('h2')?.innerText.toLowerCase() || '';
                 const paragraphs = Array.from(section.querySelectorAll('p, li, td')).map(el => el.innerText.toLowerCase()).join(' ');
-                
+
                 if (h1.includes(query) || h2.includes(query) || paragraphs.includes(query)) {
                     section.style.display = 'block';
                 } else {
                     section.style.display = 'none';
                 }
             });
-            
+
             updateScrollspy();
         });
 
@@ -1436,4 +1516,5 @@ public static function form(Form $form): Form
         });
     </script>
 </body>
+
 </html>
