@@ -28,7 +28,7 @@ class TwitterCardSection extends Section
             ->collapsible()
             ->collapsed()
             ->schema([
-                TextInput::make('seo.twitter_title')
+                TextInput::make('twitter_title')
                     ->label(__('filament-seo-pro::seo.twitter_title'))
                     ->placeholder(__('filament-seo-pro::seo.twitter_title_placeholder'))
                     ->maxLength(70)
@@ -49,14 +49,14 @@ class TwitterCardSection extends Section
                         };
                     }),
 
-                Textarea::make('seo.twitter_description')
+                Textarea::make('twitter_description')
                     ->label(__('filament-seo-pro::seo.twitter_description'))
                     ->placeholder(__('filament-seo-pro::seo.twitter_description_placeholder'))
                     ->rows(2)
                     ->maxLength(200)
                     ->live(debounce: 500),
 
-                FileUpload::make('seo.twitter_image')
+                FileUpload::make('twitter_image')
                     ->label(__('filament-seo-pro::seo.twitter_image'))
                     ->image()
                     ->imageResizeMode('cover')

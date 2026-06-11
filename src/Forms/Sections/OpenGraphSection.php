@@ -28,7 +28,7 @@ class OpenGraphSection extends Section
             ->collapsible()
             ->collapsed()
             ->schema([
-                TextInput::make('seo.og_title')
+                TextInput::make('og_title')
                     ->label(__('filament-seo-pro::seo.og_title'))
                     ->placeholder(__('filament-seo-pro::seo.og_title_placeholder'))
                     ->maxLength(95)
@@ -49,14 +49,14 @@ class OpenGraphSection extends Section
                         };
                     }),
 
-                Textarea::make('seo.og_description')
+                Textarea::make('og_description')
                     ->label(__('filament-seo-pro::seo.og_description'))
                     ->placeholder(__('filament-seo-pro::seo.og_description_placeholder'))
                     ->rows(2)
                     ->maxLength(200)
                     ->live(debounce: 500),
 
-                FileUpload::make('seo.og_image')
+                FileUpload::make('og_image')
                     ->label(__('filament-seo-pro::seo.og_image'))
                     ->image()
                     ->imageResizeMode('cover')

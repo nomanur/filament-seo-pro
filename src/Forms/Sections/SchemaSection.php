@@ -26,7 +26,7 @@ class SchemaSection extends Section
             ->collapsible()
             ->collapsed()
             ->schema([
-                SchemaTypeSelect::make('seo.schema_type'),
+                SchemaTypeSelect::make('schema_type'),
 
                 Placeholder::make('schema_info')
                     ->content(__('filament-seo-pro::seo.schema_info'))
