@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filament SEO Pro — Developer Documentation</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Prism.js for code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    
+    <style>
+        /* Modern Design Tokens */
+        :root {
+            --bg-main: #070a13;
+            --bg-sidebar: #0b0f19;
+            --bg-card: rgba(17, 24, 39, 0.6);
+            --bg-card-hover: rgba(23, 33, 53, 0.8);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent-purple: #8b5cf6;
+            --accent-cyan: #06b6d4;
+            --accent-emerald: #10b981;
+            --accent-rose: #f43f5e;
+            --accent-blue: #3b82f6;
+            --accent-orange: #f97316;
+            
+            --gradient-primary: linear-gradient(135deg, var(--accent-purple) 0%, var(--accent-cyan) 100%);
+            --gradient-border: linear-gradient(135deg, rgba(139, 92, 246, 0.3) 0%, rgba(6, 182, 212, 0.3) 100%);
+            --gradient-glow: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            
+            --font-outfit: 'Outfit', sans-serif;
+            --font-inter: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reset and Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-inter);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+        }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Layout Structure */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        .main-content {
+            margin-left: 300px;
+            flex-grow: 1;
+            max-width: 1100px;
+            padding: 4rem 3rem 6rem;
+            position: relative;
+        }
+
+        /* Sidebar Elements */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            text-decoration: none;
+        }
+
+        .brand-logo {
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-family: var(--font-outfit);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        }
+
+        .brand-name {
+            font-family: var(--font-outfit);
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Search Filter */
+        .search-container {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 18px;
+            height: 18px;
+            pointer-events: none;
+        }
+
+        /* Navigation Links */
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            padding: 0.6rem 0.75rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+            border-left: 2px solid transparent;
+        }
+
+        .nav-item a:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.03);
+            padding-left: 1rem;
+        }
+
+        .nav-item.active a {
+            color: #fff;
+            background: rgba(139, 92, 246, 0.1);
+            border-left-color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        .nav-group-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.75rem;
+        }
+
+        /* Main Content Typography */
+        section {
+            margin-bottom: 5rem;
+            scroll-margin-top: 4rem;
+        }
+
+        h1 {
+            font-family: var(--font-outfit);
+            font-weight: 800;
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-family: var(--font-outfit);
+            font-weight: 700;
+            font-size: 2rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-family: var(--font-outfit);
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Custom styles for text highlighting */
+        .highlight {
+            background-color: rgba(6, 182, 212, 0.3);
+            color: #fff;
+            padding: 0 0.2rem;
+            border-radius: 2px;
+        }
+
+        /* Badges & Pills */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .badge {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .badge-accent {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+            color: #c084fc;
+        }
+
+        /* Feature Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-card);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.3);
+            background: var(--bg-card-hover);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--accent-purple);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: var(--transition-smooth);
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--gradient-primary);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .feature-title {
+            font-family: var(--font-outfit);
+            font-weight: 600;
+            font-size: 1.15rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .feature-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Alerts & Callouts */
+        .alert {
+            background: rgba(59, 130, 246, 0.05);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 0 8px 8px 0;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .alert-warning {
+            background: rgba(249, 115, 22, 0.05);
+            border-left-color: var(--accent-orange);
+        }
+
+        .alert-success {
+            background: rgba(16, 185, 129, 0.05);
+            border-left-color: var(--accent-emerald);
+        }
+
+        .alert-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+        }
+
+        .alert-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: #fff;
+        }
+
+        .alert-content p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Code Blocks */
+        .code-container {
+            position: relative;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        pre[class*="language-"] {
+            margin: 0 !important;
+            background: #0f1322 !important;
+            padding: 1.5rem !important;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 0.4rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            z-index: 10;
+        }
+
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .copy-btn.copied {
+            border-color: var(--accent-emerald);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.02);
+            font-weight: 600;
+            color: #fff;
+            padding: 1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        tr:hover td {
+            background: rgba(255, 255, 255, 0.01);
+            color: #fff;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            background: rgba(255, 255, 255, 0.06);
+            color: #f43f5e;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        /* Inline references */
+        a.inline-file-link {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            border-bottom: 1px dashed var(--accent-cyan);
+            transition: var(--transition-smooth);
+        }
+
+        a.inline-file-link:hover {
+            color: var(--accent-purple);
+            border-bottom-color: var(--accent-purple);
+        }
+
+        /* Interactive Config Generator Section */
+        .config-generator {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .gen-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .gen-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gen-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .form-control {
+            padding: 0.6rem 0.75rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-family: var(--font-mono);
+            transition: var(--transition-smooth);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            user-select: none;
+            padding: 0.2rem 0;
+        }
+
+        .form-checkbox input {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+        }
+
+        .form-checkbox span {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .gen-output {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Steps Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-step {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-num {
+            position: absolute;
+            left: -38px;
+            top: -2px;
+            width: 24px;
+            height: 24px;
+            background: var(--bg-main);
+            border: 2px solid var(--accent-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            z-index: 2;
+        }
+
+        .timeline-title {
+            font-family: var(--font-outfit);
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-header {
+            display: none;
+            width: 100%;
+            height: 60px;
+            background: var(--bg-sidebar);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 150;
+            padding: 0 1.5rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                top: 60px;
+                height: calc(100vh - 60px);
+                width: 100%;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .mobile-header {
+                display: flex;
+            }
+            .main-content {
+                margin-left: 0;
+                padding-top: 5.5rem;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="#" class="brand" style="margin-bottom: 0;">
+            <div class="brand-logo">S</div>
+            <span class="brand-name">Filament SEO Pro</span>
+        </a>
+        <button class="menu-toggle" id="menu-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 28px; height: 28px;">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+        <a href="#" class="brand">
+            <div class="brand-logo">S</div>
+            <span class="brand-name">Filament SEO Pro</span>
+        </a>
+        
+        <div class="search-container">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="search-icon">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.603 10.603z" />
+            </svg>
+            <input type="text" class="search-input" id="search-input" placeholder="Search documentation...">
+        </div>
+
+        <nav>
+            <ul class="nav-list">
+                <li class="nav-item active"><a href="#introduction">Introduction</a></li>
+                <li class="nav-item"><a href="#features">Key Features</a></li>
+                
+                <li class="nav-group-title">Getting Started</li>
+                <li class="nav-item"><a href="#installation">Installation</a></li>
+                <li class="nav-item"><a href="#setup">Initial Setup</a></li>
+                
+                <li class="nav-group-title">Architecture</li>
+                <li class="nav-item"><a href="#models">Model Configuration</a></li>
+                <li class="nav-item"><a href="#forms">Form Components</a></li>
+                <li class="nav-item"><a href="#config-explorer">Interactive Configurator</a></li>
+                
+                <li class="nav-group-title">Customization & Rendering</li>
+                <li class="nav-item"><a href="#config-reference">Configuration Details</a></li>
+                <li class="nav-item"><a href="#frontend">Frontend Rendering</a></li>
+                <li class="nav-item"><a href="#testing">Testing & CI</a></li>
+                <li class="nav-item"><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        
+        <!-- Introduction -->
+        <section id="introduction">
+            <h1>Filament SEO Pro</h1>
+            <p style="font-size: 0.95rem; color: var(--accent-cyan); font-weight: 600; margin-top: -0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 16px; height: 16px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" /></svg>
+                Developed by Nomanur Rahman
+            </p>
+            <p>The definitive SEO toolkit for Filament v4. Bring a complete, Yoast-like content analysis system, Google searches, social media preview cards, Schema markup, and automated metrics into your Filament Admin panels.</p>
+            
+            <div class="badge-container">
+                <span class="badge badge-accent">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 14px; height: 14px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+                    v4.0.0
+                </span>
+                <span class="badge">PHP 8.2+</span>
+                <span class="badge">Laravel 10 / 11 / 12</span>
+                <span class="badge">Filament v3 / v4 / v5</span>
+                <span class="badge">MIT License</span>
+            </div>
+
+            <div class="alert">
+                <div class="alert-icon text-accent-blue">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 111.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" /></svg>
+                </div>
+                <div class="alert-content">
+                    <h4>Prerequisites</h4>
+                    <p>This package integrates deep SEO checks directly inside your panel provider. You will need a working Laravel application running Filament. Active support is optimized for Filament v4 panels.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section id="features">
+            <h2>Key Features</h2>
+            <p>Filament SEO Pro is designed from the ground up to provide a world-class editor experience. No external API requests are performed during editing, ensuring zero latency and privacy compliance.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-title">Live SEO Analysis</div>
+                    <div class="feature-desc">13 checks testing focus keywords, content lengths, title tags, metadata density, and internal link configurations in real time.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📖</div>
+                    <div class="feature-title">Readability Analyzer</div>
+                    <div class="feature-desc">Engine computes Flesch-Kincaid-inspired indices, highlighting transition word usage, passive voice percentage, and paragraph structures.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <div class="feature-title">SERP Live Previews</div>
+                    <div class="feature-desc">Visualizes real-time Google search snippet rendering. Support includes both mobile and desktop view configurations.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <div class="feature-title">Social Cards Previews</div>
+                    <div class="feature-desc">Visual preview cards for Open Graph (Facebook, LinkedIn) and Twitter/X, with custom image, title, and description options.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">SEO Management Page</div>
+                    <div class="feature-desc">A centralized, bulk administration panel mapping all configured Models, listing SEO scores, filter structures, and CSV exports.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">Performance Cache</div>
+                    <div class="feature-desc">Scores and analysis states can be queued asynchronously and cached locally to prevent database load spikes.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation -->
+        <section id="installation">
+            <h2>Installation</h2>
+            <p>Bring the package into your repository via composer. Follow these steps to configure databases and assets.</p>
+            
+            <div class="timeline">
+                <div class="timeline-step">
+                    <span class="timeline-num">1</span>
+                    <div class="timeline-title">Download Package</div>
+                    <p>Pull the package from Packagist into your project dependencies:</p>
+                    <div class="code-container">
+                        <pre><code class="language-bash">composer require nomanur/filament-seo-pro</code></pre>
+                    </div>
+                </div>
+                
+                <div class="timeline-step">
+                    <span class="timeline-num">2</span>
+                    <div class="timeline-title">Publish Frontend Assets</div>
+                    <p>Assets are managed locally via Filament's asset manager. Publish them into your public directory:</p>
+                    <div class="code-container">
+                        <pre><code class="language-bash">php artisan filament:assets</code></pre>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <span class="timeline-num">3</span>
+                    <div class="timeline-title">Run Polymorphic Migrations</div>
+                    <p>Publish and run the migrations to create the database table `seo_meta` that stores all records polymorphically:</p>
+                    <div class="code-container">
+                        <pre><code class="language-bash">php artisan vendor:publish --tag="filament-seo-pro-migrations"
+php artisan migrate</code></pre>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <span class="timeline-num">4</span>
+                    <div class="timeline-title">Publish Configuration File (Optional)</div>
+                    <p>Create a local copy of the global configuration files to customize checking criteria:</p>
+                    <div class="code-container">
+                        <pre><code class="language-bash">php artisan vendor:publish --tag="filament-seo-pro-config"</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Setup -->
+        <section id="setup">
+            <h2>Initial Setup</h2>
+            <p>Register the plugin directly inside your panel provider class. This binds all page builders and widget registers.</p>
+            
+            <p>Edit your panel provider (typically <a class="inline-file-link" href="file:///app/Providers/Filament/AdminPanelProvider.php">app/Providers/Filament/AdminPanelProvider.php</a>):</p>
+            
+            <div class="code-container">
+                <pre><code class="language-php">&lt;?php
+
+namespace App\Providers\Filament;
+
+use Filament\Panel;
+use Filament\PanelProvider;
+use Nomanur\FilamentSeoPro\SeoPlugin;
+
+class AdminPanelProvider extends PanelProvider
+{
+    public function panel(Panel $panel): Panel
+    {
+        return $panel
+            ->default()
+            ->id('admin')
+            ->path('admin')
+            // ...other settings
+            ->plugins([
+                SeoPlugin::make()
+                    ->defaultContentField('body')
+                    ->defaultTitleField('name')
+                    ->models([
+                        \App\Models\Post::class,
+                        \App\Models\Page::class,
+                    ]),
+            ]);
+    }
+}</code></pre>
+            </div>
+        </section>
+
+        <!-- Models -->
+        <section id="models">
+            <h2>Model Configuration</h2>
+            <p>To associate SEO attributes with a model, apply the <code class="language-php">HasSeo</code> trait. This creates a polymorphic relationship to the <a class="inline-file-link" href="file:///Users/nomanur/Packages/filament-seo-pro/src/Models/SeoMeta.php">SeoMeta</a> model.</p>
+            
+            <p>Example using a `Post` model (<a class="inline-file-link" href="file:///app/Models/Post.php">app/Models/Post.php</a>):</p>
+            
+            <div class="code-container">
+                <pre><code class="language-php">&lt;?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Nomanur\FilamentSeoPro\Traits\HasSeo;
+
+class Post extends Model
+{
+    use HasSeo;
+    
+    // Optional: Provide custom getUrl() method for the live URL previewer
+    public function getUrl(): string
+    {
+        return route('posts.show', $this->slug);
+    }
+}</code></pre>
+            </div>
+
+            <h3>Available Trait Helper Methods</h3>
+            <p>The <a class="inline-file-link" href="file:///Users/nomanur/Packages/filament-seo-pro/src/Traits/HasSeo.php">HasSeo</a> trait provides several helpful runtime methods:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Return Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>$model->seo()</code></td>
+                        <td><code>MorphOne</code></td>
+                        <td>Get the Eloquent polymorphic relationship instance.</td>
+                    </tr>
+                    <tr>
+                        <td><code>$model->getOrCreateSeo()</code></td>
+                        <td><code>SeoMeta</code></td>
+                        <td>Get the existing SEO metadata model or initialize a blank one with index directives.</td>
+                    </tr>
+                    <tr>
+                        <td><code>$model->hasSeoMeta()</code></td>
+                        <td><code>bool</code></td>
+                        <td>Checks if the model has a non-null custom SEO title or description.</td>
+                    </tr>
+                    <tr>
+                        <td><code>$model->updateSeoScore(int $score)</code></td>
+                        <td><code>void</code></td>
+                        <td>Atomically writes a calculated SEO score to the DB.</td>
+                    </tr>
+                    <tr>
+                        <td><code>$model->getSeoAnalysisData()</code></td>
+                        <td><code>array</code></td>
+                        <td>Compiles content, slugs, URLs, titles, and keys for the engine analyzer.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="alert alert-warning">
+                <div class="alert-icon text-accent-orange">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" /></svg>
+                </div>
+                <div class="alert-content">
+                    <h4>Automatic Cascade Deletion</h4>
+                    <p>When you call <code>$model->delete()</code>, the trait boots a deleting listener that automatically deletes the associated <code>SeoMeta</code> record from the database to prevent orphaned records.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Forms -->
+        <section id="forms">
+            <h2>Form Integration</h2>
+            <p>You can choose between two form components depending on your resource layout: <strong>Tabs</strong> or <strong>Sections</strong>.</p>
+            
+            <h3>Option A: Drop-in Tab (Recommended)</h3>
+            <p>If your form uses Filament's `Tabs` component, simply register the tab. Place this in your resource form method:</p>
+            
+            <div class="code-container">
+                <pre><code class="language-php">use Filament\Forms\Components\Tabs;
+use Nomanur\FilamentSeoPro\Forms\SeoTab;
+
+public static function form(Form $form): Form
+{
+    return $form
+        ->schema([
+            Tabs::make('Main Layout')
+                ->tabs([
+                    Tabs\Tab::make('Content')
+                        ->schema([
+                            // Your standard fields...
+                        ]),
+                    SeoTab::make(), // Automatically injects the full SEO interface
+                ])
+        ]);
+}</code></pre>
+            </div>
+
+            <h3>Option B: Inline Section</h3>
+            <p>If your form does not use tabs, you can use the collapsible section component instead:</p>
+            
+            <div class="code-container">
+                <pre><code class="language-php">use Nomanur\FilamentSeoPro\Forms\SeoSection;
+
+public static function form(Form $form): Form
+{
+    return $form
+        ->schema([
+            // Your standard fields...
+            
+            SeoSection::make(), // Automatically collapsible section at the bottom
+        ]);
+}</code></pre>
+            </div>
+
+            <h3>Overriding Defaults on the Fly</h3>
+            <p>By default, the plugin queries global configs to fetch fields. You can override these mapping rules dynamically on specific resource forms:</p>
+            
+            <div class="code-container">
+                <pre><code class="language-php">SeoTab::make()
+    ->contentField('post_body')  // Bind to custom body field name
+    ->titleField('post_title')   // Bind to custom title field name
+    ->slugField('post_slug')     // Bind to custom slug field name</code></pre>
+            </div>
+        </section>
+
+        <!-- Interactive Configurator -->
+        <section id="config-explorer">
+            <h2>Interactive Plugin Builder</h2>
+            <p>Use this utility to configure your panel integration options. Tweak the inputs below, and copy the instantly updated PHP code for your PanelProvider registration.</p>
+            
+            <div class="config-generator">
+                <div class="gen-grid">
+                    <div class="gen-controls">
+                        <div class="form-group">
+                            <label for="cfg-content">Default Content Field</label>
+                            <input type="text" id="cfg-content" class="form-control" value="content">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-title">Default Title Field</label>
+                            <input type="text" id="cfg-title" class="form-control" value="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-slug">Default Slug Field</label>
+                            <input type="text" id="cfg-slug" class="form-control" value="slug">
+                        </div>
+                        <div class="form-group">
+                            <label for="cfg-models">Registered Models (comma separated)</label>
+                            <input type="text" id="cfg-models" class="form-control" value="App\Models\Post, App\Models\Page">
+                        </div>
+                        
+                        <div class="form-group" style="margin-top: 0.5rem;">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="cfg-widget" checked>
+                                <span>Enable Dashboard Widget</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="cfg-page" checked>
+                                <span>Enable Management Page</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-checkbox">
+                                <input type="checkbox" id="cfg-translatable">
+                                <span>Enable Spatie Translatable Support</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="gen-output">
+                        <div class="form-group" style="height: 100%;">
+                            <label>Generated PHP Code</label>
+                            <div class="code-container" style="margin: 0; height: 100%;">
+                                <pre style="height: 100%;"><code class="language-php" id="generated-code">SeoPlugin::make()
+    ->defaultContentField('content')
+    ->defaultTitleField('title')
+    ->defaultSlugField('slug')
+    ->enableDashboardWidget(true)
+    ->enableManagementPage(true)
+    ->translatable(false)
+    ->models([
+        \App\Models\Post::class,
+        \App\Models\Page::class,
+    ])</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Configuration Reference -->
+        <section id="config-reference">
+            <h2>Configuration Reference</h2>
+            <p>Publishing the configuration files creates two separate files in your config directory. Learn when and how to modify them below.</p>
+            
+            <h3>1. Panel Settings: <a class="inline-file-link" href="file:///Users/nomanur/Packages/filament-seo-pro/config/filament-seo-pro.php">config/filament-seo-pro.php</a></h3>
+            <p>Controls global field mapping fallbacks, translatable supports, cache lifetimes, and dashboard lists.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Option Key</th>
+                        <th>Default Value</th>
+                        <th>Usage Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>default_content_field</code></td>
+                        <td><code>'content'</code></td>
+                        <td>Fallback field checked to fetch content details for real-time analyses.</td>
+                    </tr>
+                    <tr>
+                        <td><code>default_title_field</code></td>
+                        <td><code>'title'</code></td>
+                        <td>Fallback field checked to fetch title details for Google SERP analysis.</td>
+                    </tr>
+                    <tr>
+                        <td><code>default_slug_field</code></td>
+                        <td><code>'slug'</code></td>
+                        <td>Fallback field checked to fetch the slug structure for preview links.</td>
+                    </tr>
+                    <tr>
+                        <td><code>translatable</code></td>
+                        <td><code>false</code></td>
+                        <td>Set <code>true</code> if you use Spatie's multi-language translation traits in models.</td>
+                    </tr>
+                    <tr>
+                        <td><code>cache_ttl</code></td>
+                        <td><code>3600</code></td>
+                        <td>Time (in seconds) to cache SEO grades. Set to <code>0</code> to disable database caching.</td>
+                    </tr>
+                    <tr>
+                        <td><code>queue_analysis</code></td>
+                        <td><code>false</code></td>
+                        <td>Offload heavy calculations to background queues instead of computing on form input triggers.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. Engine Tuning: <a class="inline-file-link" href="file:///Users/nomanur/Packages/filament-seo-pro/config/config.php">config/config.php</a></h3>
+            <p>Fine-tune target reading indices, minimum word limits, passive voice indicators, and individual check point weights.</p>
+            
+            <div class="code-container">
+                <pre><code class="language-php">// Snippet from config/config.php
+'readability' => [
+    'target_sentence_length' => [
+        'min' => 15,
+        'max' => 20,
+    ],
+    'target_paragraph_sentences' => [
+        'min' => 2,
+        'max' => 4,
+    ],
+    'max_passive_voice_percentage' => 10.0,
+    'min_transition_words' => 3,
+],
+
+'weights' => [
+    'title_exists' => 10,
+    'title_length' => 10,
+    'keyword_in_title' => 10,
+    'description_exists' => 10,
+    'content_length' => 10,
+    'internal_links' => 5,
+    'external_links' => 5,
+],</code></pre>
+            </div>
+        </section>
+
+        <!-- Frontend Rendering -->
+        <section id="frontend">
+            <h2>Frontend Rendering</h2>
+            <p>To render the configured metadata tags, Open Graph, and Twitter Cards in your public HTML template, query the polymorphic relation directly inside your layout file.</p>
+            
+            <p>Insert this standard boilerplate inside the <code>&lt;head&gt;</code> tag of your global Blade layout (e.g., <code class="language-php">resources/views/layouts/app.blade.php</code>):</p>
+            
+            <div class="code-container">
+                <pre><code class="language-html">&lt;head&gt;
+    &lt;!-- Basic Meta Tags --&gt;
+    &lt;title&gt;{{ $model-&gt;seo?-&gt;title ?? $model-&gt;title }}&lt;/title&gt;
+    &lt;meta name="description" content="{{ $model-&gt;seo?-&gt;description ?? Str::limit(strip_tags($model-&gt;content), 150) }}"&gt;
+    @if($model-&gt;seo?-&gt;keywords)
+        &lt;meta name="keywords" content="{{ $model-&gt;seo-&gt;keywords }}"&gt;
+    @endif
+    &lt;meta name="robots" content="{{ $model-&gt;seo?-&gt;robots ?? 'index, follow' }}"&gt;
+    &lt;link rel="canonical" href="{{ $model-&gt;seo?-&gt;canonical_url ?? request()-&gt;url() }}"&gt;
+
+    &lt;!-- Open Graph (Facebook / LinkedIn) --&gt;
+    &lt;meta property="og:type" content="website"&gt;
+    &lt;meta property="og:url" content="{{ request()-&gt;url() }}"&gt;
+    &lt;meta property="og:title" content="{{ $model-&gt;seo?-&gt;og_title ?? $model-&gt;seo?-&gt;title ?? $model-&gt;title }}"&gt;
+    &lt;meta property="og:description" content="{{ $model-&gt;seo?-&gt;og_description ?? $model-&gt;seo?-&gt;description ?? '' }}"&gt;
+    @if($model-&gt;seo?-&gt;og_image)
+        &lt;meta property="og:image" content="{{ Storage::disk(config('filament.default_filesystem_disk', 'public'))-&gt;url($model-&gt;seo-&gt;og_image) }}"&gt;
+    @endif
+
+    &lt;!-- Twitter Cards --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:url" content="{{ request()-&gt;url() }}"&gt;
+    &lt;meta name="twitter:title" content="{{ $model-&gt;seo?-&gt;twitter_title ?? $model-&gt;seo?-&gt;title ?? $model-&gt;title }}"&gt;
+    &lt;meta name="twitter:description" content="{{ $model-&gt;seo?-&gt;twitter_description ?? $model-&gt;seo?-&gt;description ?? '' }}"&gt;
+    @if($model-&gt;seo?-&gt;twitter_image)
+        &lt;meta name="twitter:image" content="{{ Storage::disk(config('filament.default_filesystem_disk', 'public'))-&gt;url($model-&gt;seo-&gt;twitter_image) }}"&gt;
+    @endif
+
+    &lt;!-- Schema.org JSON-LD Markup --&gt;
+    @if($model-&gt;seo?-&gt;schema_type)
+        &lt;script type="application/ld+json"&gt;
+        {
+            "@context": "https://schema.org",
+            "@type": "{{ $model-&gt;seo-&gt;schema_type }}",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "{{ request()-&gt;url() }}"
+            },
+            "headline": "{{ $model-&gt;seo?-&gt;title ?? $model-&gt;title }}",
+            "description": "{{ $model-&gt;seo?-&gt;description ?? '' }}"
+        }
+        &lt;/script&gt;
+    @endif
+&lt;/head&gt;</code></pre>
+            </div>
+            
+            <div class="alert alert-success">
+                <div class="alert-icon text-accent-emerald">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 24px; height: 24px;"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" /></svg>
+                </div>
+                <div class="alert-content">
+                    <h4>Eager Loading Tip</h4>
+                    <p>To avoid N+1 query problems in lists or pages executing metadata reviews, eager load the SEO relationship in your controllers: <code>$posts = Post::with('seo')->get();</code></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testing -->
+        <section id="testing">
+            <h2>Testing & CI</h2>
+            <p>Ensure that all local code contributions pass automated checks. The package contains a comprehensive suite of Pest tests and strict Larastan analysis rules.</p>
+            
+            <p>To execute the tests locally, run the following script:</p>
+            <div class="code-container">
+                <pre><code class="language-bash">composer test</code></pre>
+            </div>
+
+            <p>To run static analysis checks via PHPStan/Larastan:</p>
+            <div class="code-container">
+                <pre><code class="language-bash">composer analyse</code></pre>
+            </div>
+
+            <p>To automatically format codebase code structures following Pint guidelines:</p>
+            <div class="code-container">
+                <pre><code class="language-bash">composer format</code></pre>
+            </div>
+        </section>
+
+        <!-- Troubleshooting -->
+        <section id="troubleshooting">
+            <h2>Troubleshooting</h2>
+            <p>Solutions to common issues encountered during setup or local package operations.</p>
+            
+            <h3>1. Visual elements are blank or styles are broken</h3>
+            <p>If the Google Search Preview, readability panels, or SEO checklist fail to display styling inside your admin panel, re-publish the frontend assets. This moves the compiled package CSS files into Laravel's public asset storage:</p>
+            <div class="code-container">
+                <pre><code class="language-bash">php artisan filament:assets</code></pre>
+            </div>
+
+            <h3>2. Model validation errors: SEO fields cannot accept null states</h3>
+            <p>If you encounter database level exceptions trying to save model forms, ensure you have executed migrations. The polymorphic relationship queries the <code>seo_meta</code> table, which creates non-null defaults for columns like <code>robots</code> and <code>seo_score</code>.</p>
+            
+            <h3>3. Spatie Translatable support is failing</h3>
+            <p>If you translate your content field (e.g. <code>content</code> is translated), make sure you enable Spatie support within your configuration or inside your panel provider registration by adding <code>->translatable(true)</code>.</p>
+        </section>
+
+        <!-- Footer / Contact Info -->
+        <footer style="margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.9rem; color: var(--text-muted);">
+            <p>Developed with ❤️ by <span style="color: var(--text-primary); font-weight: 500;">Nomanur Rahman</span>.</p>
+            <p>Need support or custom integrations? Contact via email at <a href="mailto:nomanurrahman@gmail.com" style="color: var(--accent-cyan); text-decoration: none;">nomanurrahman@gmail.com</a>.</p>
+        </footer>
+
+    </main>
+
+    <!-- Prism.js Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+    
+    <!-- Custom JS for interactions -->
+    <script>
+        // Copy to clipboard
+        document.querySelectorAll('pre').forEach(pre => {
+            const container = document.createElement('div');
+            container.className = 'code-container';
+            pre.parentNode.insertBefore(container, pre);
+            container.appendChild(pre);
+
+            const btn = document.createElement('button');
+            btn.className = 'copy-btn';
+            btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 18px; height: 18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" /></svg>`;
+            container.appendChild(btn);
+
+            btn.addEventListener('click', () => {
+                const code = pre.querySelector('code').innerText;
+                navigator.clipboard.writeText(code).then(() => {
+                    btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 18px; height: 18px; color: #10b981;"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>`;
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" style="width: 18px; height: 18px;"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" /></svg>`;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+        });
+
+        // Config builder logic
+        const cfgContent = document.getElementById('cfg-content');
+        const cfgTitle = document.getElementById('cfg-title');
+        const cfgSlug = document.getElementById('cfg-slug');
+        const cfgModels = document.getElementById('cfg-models');
+        const cfgWidget = document.getElementById('cfg-widget');
+        const cfgPage = document.getElementById('cfg-page');
+        const cfgTranslatable = document.getElementById('cfg-translatable');
+        const generatedCode = document.getElementById('generated-code');
+
+        function updateConfig() {
+            let code = `SeoPlugin::make()\n`;
+            
+            if (cfgContent.value !== 'content') {
+                code += `    ->defaultContentField('${cfgContent.value}')\n`;
+            }
+            if (cfgTitle.value !== 'title') {
+                code += `    ->defaultTitleField('${cfgTitle.value}')\n`;
+            }
+            if (cfgSlug.value !== 'slug') {
+                code += `    ->defaultSlugField('${cfgSlug.value}')\n`;
+            }
+            
+            code += `    ->enableDashboardWidget(${cfgWidget.checked ? 'true' : 'false'})\n`;
+            code += `    ->enableManagementPage(${cfgPage.checked ? 'true' : 'false'})\n`;
+            
+            if (cfgTranslatable.checked) {
+                code += `    ->translatable(true)\n`;
+            }
+            
+            if (cfgModels.value.trim() !== '') {
+                const models = cfgModels.value.split(',').map(m => m.trim()).filter(m => m !== '');
+                if (models.length > 0) {
+                    code += `    ->models([\n`;
+                    models.forEach(model => {
+                        const cleanModel = model.startsWith('\\') ? model : '\\' + model;
+                        code += `        ${cleanModel}::class,\n`;
+                    });
+                    code += `    ])`;
+                } else {
+                    code = code.trim(); // strip newline
+                }
+            } else {
+                code = code.trim();
+            }
+
+            generatedCode.innerText = code;
+            Prism.highlightElement(generatedCode);
+        }
+
+        [cfgContent, cfgTitle, cfgSlug, cfgModels, cfgWidget, cfgPage, cfgTranslatable].forEach(el => {
+            el.addEventListener('input', updateConfig);
+            el.addEventListener('change', updateConfig);
+        });
+
+        // Scrollspy for sidebar active link
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('section');
+
+        function updateScrollspy() {
+            let currentActive = 'introduction';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 120) {
+                    // Check if element is visible
+                    if (section.style.display !== 'none') {
+                        currentActive = section.getAttribute('id');
+                    }
+                }
+            });
+
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link.getAttribute('href') === `#${currentActive}`) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateScrollspy);
+
+        // Search filter functionality
+        const searchInput = document.getElementById('search-input');
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            sections.forEach(section => {
+                const h1 = section.querySelector('h1')?.innerText.toLowerCase() || '';
+                const h2 = section.querySelector('h2')?.innerText.toLowerCase() || '';
+                const paragraphs = Array.from(section.querySelectorAll('p, li, td')).map(el => el.innerText.toLowerCase()).join(' ');
+                
+                if (h1.includes(query) || h2.includes(query) || paragraphs.includes(query)) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+            
+            updateScrollspy();
+        });
+
+        // Mobile sidebar toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close mobile sidebar on nav click
+        document.querySelectorAll('.sidebar nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
