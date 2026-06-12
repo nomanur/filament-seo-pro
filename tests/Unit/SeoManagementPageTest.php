@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use Nomanur\FilamentSeoPro\Pages\SeoManagement;
 use Nomanur\FilamentSeoPro\Models\SeoMeta;
+use Nomanur\FilamentSeoPro\Pages\SeoManagement;
 
 it('calculates page stats correctly on SeoManagement page', function () {
     // Populate database with some records
@@ -23,7 +23,7 @@ it('calculates page stats correctly on SeoManagement page', function () {
         'seo_score' => 20,
     ]);
 
-    $page = new SeoManagement();
+    $page = new SeoManagement;
 
     expect($page->getAverageScore())->toBe(53); // (85 + 20) / 2 = 52.5 -> 53
     expect($page->getMissingTitlesCount())->toBe(1);
