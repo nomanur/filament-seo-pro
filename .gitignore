@@ -1,0 +1,5 @@
+/vendor/
+/.phpunit.cache/
+/.phpstan-cache/
+.env
+.DS_Store
